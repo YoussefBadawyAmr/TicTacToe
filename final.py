@@ -82,12 +82,19 @@ def logic():
         window[lay_list[laynow+1]].Update(visible = True)
         window["winner"].Update(f"{winner} IS THE WINNER!")
         window.move_to_center()
+    if "" in board[0] or "" in board[1] or "" in board[2]:
+        pass
+    else:
+        window[lay_list[laynow]].Update(visible = False)
+        window[lay_list[laynow+1]].Update(visible = True)
+        window["winner"].Update("IT'S A DRAW")
+        window.move_to_center()
 
 
 while True:
     state, values = window.read()
 
-    if state in n:
+    if state in n :
         if last == "X":
             last ="O"
             window[state].Update(image_filename="Pyhton\\TicTacToe\\img\\O.png")
@@ -106,6 +113,7 @@ while True:
                 board[1][int(state)-4] = "X"
             else:
                 board[2][int(state)-7] = "X"
+
     elif state == "start" :
         window[lay_list[laynow]].Update(visible = False)
         window[lay_list[laynow+1]].Update(visible = True)
@@ -115,6 +123,14 @@ while True:
         window[lay_list[laynow]].Update(visible = False)
         window[lay_list[laynow-1]].Update(visible = True)
         laynow-=1
+        for i in range(1,10):
+            window[f"{i}"].Update(image_filename="Pyhton\\TicTacToe\\img\\black.png")
+        board =[
+        ["","",""],
+        ["","",""],
+        ["","",""]
+        ]
+        last = "O"
     elif state == "reset":
         board =[
         ["","",""],
