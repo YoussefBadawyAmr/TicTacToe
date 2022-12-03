@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 sg.theme_background_color("white")
 s = (19,10)
 n = "123456789"
-winner = ["123","456","789","159","357","147","258","369"]
+winner = ""
 
 global state , values , window ,game , menu ,last
 lay_list = ["menu","game"]
@@ -12,7 +12,7 @@ laynow = 0
 
 menu = [
         [sg.Push(background_color = "white"),sg.Text("**********************Welcome**********************",background_color="white",text_color="black"),sg.Push(background_color = "white")],
-        [sg.VPush(background_color="white"),sg.Push(background_color = "white"),sg.Button(key = "start",image_filename="Pyhton\\TicTacToe\\img\\Start.png",button_color="white",border_width=0),sg.Push(background_color = "white"),sg.VPush(background_color="white")]
+        [sg.VPush(background_color="white"),sg.Push(background_color = "white"),sg.Button(key = "start",image_filename="img\\Start.png",button_color="white",border_width=0),sg.Push(background_color = "white"),sg.VPush(background_color="white")]
     ]
 game = [
             [sg.Button("1",key="1",size=s,button_color=("black","white"),border_width=0),sg.Button("2",key="2",size=s,button_color=("black","white"),border_width=0),sg.Button("3",key="3",size=s,button_color=("black","white"),border_width=0)],
@@ -21,10 +21,7 @@ game = [
             [sg.Push(background_color="white"),sg.Button("Return",key="back")]
     ]
 
-pop = [
-        [sg.VPush(background_color="white"),sg.Push(background_color="white"),sg.Text(key="winner"),sg.VPush(background_color="white"),sg.Push(background_color="white")]
 
-]
 
 layout = [[sg.Column(menu,key="menu"),sg.Column(game,key="game",visible=False)]]
 
@@ -81,7 +78,7 @@ while True:
     if state in n:
         if last == "X":
             last ="O"
-            window[state].Update(image_filename="Pyhton\\TicTacToe\\img\\O.png")
+            window[state].Update(image_filename="img\\O.png")
             if int(state) < 4:              
                 board[0][int(state)-1] = 'O'
             elif int(state) <7:
@@ -90,7 +87,7 @@ while True:
                 board[2][int(state)-7] = 'O'
         else:
             last ="X"
-            window[state].Update(image_filename="Pyhton\\TicTacToe\\img\\X.png")
+            window[state].Update(image_filename="img\\X.png")
             if int(state) < 4:              
                 board[0][int(state)-1] = "X"
             elif int(state) <7:
