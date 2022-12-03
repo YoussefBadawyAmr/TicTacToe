@@ -28,21 +28,52 @@ pop = [
 
 layout = [[sg.Column(menu,key="menu"),sg.Column(game,key="game",visible=False)]]
 
+
 board =[
-[6,6,6],
-[6,6,6],
-[6,6,6]
+["","",""],
+["","",""],
+["","",""]
 ]
-
-
-
-
 last = "O"
 
 
 
 
 window = sg.Window('Introduction', layout)
+def logic():
+    currentChar = board[0][0]
+    if currentChar != "" and board[0][1] == currentChar and board[0][2] == currentChar: # check first row
+        print(f"{currentChar} wins!")
+
+    currentChar = board[1][0]
+    if currentChar != "" and board[1][1] == currentChar and board[1][2] == currentChar: # check second row
+        print(f"{currentChar} wins!")
+
+    currentChar = board[2][0]
+    if currentChar != "" and board[2][1] == currentChar and board[2][2] == currentChar: # check third row
+        print(f"{currentChar} wins!")
+
+    currentChar = board[0][0]
+    if currentChar != "" and board[1][0] == currentChar and board[2][0] == currentChar: # check first column
+        print(f"{currentChar} wins!")
+        
+    currentChar = board[0][1]
+    if currentChar != "" and board[1][1] == currentChar and board[2][1] == currentChar: # check second column
+        print(f"{currentChar} wins!")
+
+    currentChar = board[0][2]
+    if currentChar != "" and board[1][2] == currentChar and board[2][2] == currentChar: # check third column
+        print(f"{currentChar} wins!")
+
+    currentChar = board[0][0]
+    if currentChar != "" and board[1][1] == currentChar and board[2][2] == currentChar: # check first diagonal
+        print(f"{currentChar} wins!")
+
+    currentChar = board[0][2]
+    if currentChar != "" and board[1][1] == currentChar and board[2][0] == currentChar: # check second diagonal
+        print(f"{currentChar} wins!")
+
+
 
 while True:
     state, values = window.read()
@@ -52,20 +83,20 @@ while True:
             last ="O"
             window[state].Update(image_filename="Pyhton\\TicTacToe\\img\\O.png")
             if int(state) < 4:              
-                board[0][int(state)-1] = 0
+                board[0][int(state)-1] = 'O'
             elif int(state) <7:
-                board[1][int(state)-4] = 0
+                board[1][int(state)-4] = 'O'
             else:
-                board[2][int(state)-7] = 0
+                board[2][int(state)-7] = 'O'
         else:
             last ="X"
             window[state].Update(image_filename="Pyhton\\TicTacToe\\img\\X.png")
             if int(state) < 4:              
-                board[0][int(state)-1] = 1
+                board[0][int(state)-1] = "X"
             elif int(state) <7:
-                board[1][int(state)-4] = 1
+                board[1][int(state)-4] = "X"
             else:
-                board[2][int(state)-7] = 1
+                board[2][int(state)-7] = "X"
     elif state == "start" :
         window[lay_list[laynow]].Update(visible = False)
         window[lay_list[laynow+1]].Update(visible = True)
@@ -74,6 +105,7 @@ while True:
         window[lay_list[laynow]].Update(visible = False)
         window[lay_list[laynow-1]].Update(visible = True)
         laynow-=1
+    logic()
     print(state)
     if state in (None, 'Exit'):
         break
