@@ -20,14 +20,14 @@ game = [
             [sg.Button("1",key="1",size=s,button_color=("white",main_color),border_width=0),sg.Button("2",key="2",size=s,button_color=("white",main_color),border_width=0),sg.Button("3",key="3",size=s,button_color=("white",main_color),border_width=0)],
             [sg.Button("4",key="4",size=s,button_color=("white",main_color),border_width=0),sg.Button("5",key="5",size=s,button_color=("white",main_color),border_width=0),sg.Button("6",key="6",size=s,button_color=("white",main_color),border_width=0)],
             [sg.Button("7",key="7",size=s,button_color=("white",main_color),border_width=0,),sg.Button("8",key="8",size=s,button_color=("white",main_color),border_width=0),sg.Button("9",key="9",size=s,button_color=("white",main_color),border_width=0)],
-            [sg.Push(background_color=main_color),sg.Button("Return",key="back")]
+            [sg.Push(background_color='white'),sg.Button("Return",key="back")]
     ]
 win_lay = [[sg.VPush(background_color=main_color),sg.Push(background_color=main_color),sg.Text("",key="winner",text_color=text_color,background_color=main_color,font="PricedownBlack"),sg.Push(background_color=main_color),sg.VPush(background_color=main_color)],
            [sg.VPush(background_color=main_color),sg.Push(background_color=main_color),sg.Button("Retry",key="reset")]
         ]
 
 
-layout = [[sg.Column(menu,key="menu"),sg.Column(game,key="game",visible=False),sg.Column(win_lay,key="winpage",visible=False,size=(400,100))]]
+layout = [[sg.Column(menu,key="menu"),sg.Column(game,key="game",visible=False,background_color='white'),sg.Column(win_lay,key="winpage",visible=False,size=(400,100))]]
 
 
 board =[
