@@ -1,20 +1,31 @@
 import threading
 import PySimpleGUI as sg
+#Define some vals
 main_color = "black"
 text_color = "white"
 sg.theme_background_color(main_color)
+# size of the button
 s = (23,11)
+# number of buttons
 n = "123456789"
 
+#the path of the pics
 
+OPath = 'Pyhton\\TicTacToe\\img\\O.png'
+XPath = 'Pyhton\\TicTacToe\\img\\X.png'
+BlackPath = 'Pyhton\\TicTacToe\\img\\black.png'
+StartButton = 'Pyhton\\TicTacToe\\img\\Start.png'
 
-global state , values , window ,game , menu ,last, winner
+#List of layouts
 lay_list = ["menu","game","winpage"]
+# the number of the layout that is active right now
 laynow = 0
 
+
+# the layouts for each window
 menu = [
         [sg.Push(background_color = main_color),sg.Text("**********************Welcome**********************",background_color=main_color,text_color=text_color),sg.Push(background_color = main_color)],
-        [sg.VPush(background_color = main_color),sg.Push(background_color = main_color),sg.Button(key = "start",image_filename="Pyhton\\TicTacToe\\img\\Start.png",button_color=main_color,border_width=0),sg.Push(background_color = main_color),sg.VPush(background_color=main_color)]
+        [sg.VPush(background_color = main_color),sg.Push(background_color = main_color),sg.Button(key = "start",image_filename=StartButton,button_color=main_color,border_width=0),sg.Push(background_color = main_color),sg.VPush(background_color=main_color)]
     ]
 game = [    
             [sg.Button("1",key="1",size=s,button_color=("white",main_color),border_width=0),sg.Button("2",key="2",size=s,button_color=("white",main_color),border_width=0),sg.Button("3",key="3",size=s,button_color=("white",main_color),border_width=0)],
@@ -30,17 +41,21 @@ win_lay = [[sg.VPush(background_color=main_color),sg.Push(background_color=main_
 layout = [[sg.Column(menu,key="menu"),sg.Column(game,key="game",visible=False,background_color='white'),sg.Column(win_lay,key="winpage",visible=False,size=(400,100))]]
 
 
+#game board
 board =[
 ["","",""],
 ["","",""],
 ["","",""]
 ]
+#last one who played
 last = "O"
 
 
 
 
-window = sg.Window('Introduction', layout)
+window = sg.Window('TicTacToe', layout)
+
+#the logic behind the game to find the winner
 def logic():
     currentChar = board[0][0]
     winner = ""
@@ -97,7 +112,7 @@ while True:
     if state in n :
         if last == "X":
             last ="O"
-            window[state].Update(image_filename="Pyhton\\TicTacToe\\img\\O.png")
+            window[state].Update(image_filename=OPath)
             if int(state) < 4:              
                 board[0][int(state)-1] = 'O'
             elif int(state) <7:
@@ -106,7 +121,7 @@ while True:
                 board[2][int(state)-7] = 'O'
         else:
             last ="X"
-            window[state].Update(image_filename="Pyhton\\TicTacToe\\img\\X.png")
+            window[state].Update(image_filename=XPath)
             if int(state) < 4:              
                 board[0][int(state)-1] = "X"
             elif int(state) <7:
@@ -124,7 +139,7 @@ while True:
         window[lay_list[laynow-1]].Update(visible = True)
         laynow-=1
         for i in range(1,10):
-            window[f"{i}"].Update(image_filename="Pyhton\\TicTacToe\\img\\black.png")
+            window[f"{i}"].Update(image_filename=BlackPath)
         board =[
         ["","",""],
         ["","",""],
@@ -142,7 +157,7 @@ while True:
         window[lay_list[0]].Update(visible = True)
         laynow = 0
         for i in range(1,10):
-            window[f"{i}"].Update(image_filename="Pyhton\\TicTacToe\\img\\black.png")
+            window[f"{i}"].Update(image_filename=BlackPath)
 
     logic()
     print(state)
