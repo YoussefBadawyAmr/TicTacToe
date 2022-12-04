@@ -1,4 +1,3 @@
-import threading
 import PySimpleGUI as sg
 #Define some vals
 main_color = "black"
@@ -11,10 +10,10 @@ n = "123456789"
 
 #the path of the pics
 
-OPath = 'Pyhton\\TicTacToe\\img\\O.png'
-XPath = 'Pyhton\\TicTacToe\\img\\X.png'
-BlackPath = 'Pyhton\\TicTacToe\\img\\black.png'
-StartButton = 'Pyhton\\TicTacToe\\img\\Start.png'
+OPath = 'O.png'
+XPath = 'X.png'
+BlackPath = 'black.png'
+StartButton = 'Start.png'
 
 #List of layouts
 lay_list = ["menu","game","winpage"]
@@ -163,12 +162,3 @@ while True:
     print(state)
     if state in (None, 'Exit'):
         break
-
-
-
-
-    
-
-
-
-
